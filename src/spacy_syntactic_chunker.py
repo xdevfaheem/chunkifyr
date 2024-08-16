@@ -1,5 +1,4 @@
-from intellique.chunkers.src.chunkifyr.base import Chunker, Chunk
-from intellique.utils import install_package
+from chunkifyr import Chunker, Chunk
 from typing import List
 
 class SpacySyntacticChunker(Chunker):
@@ -53,7 +52,7 @@ class SpacySyntacticChunker(Chunker):
             total += _len + (separator_len if len(current_doc) > 1 else 0)
         doc = self._join_docs(current_doc, separator)
         if doc is not None:
-            chunk = Chunk(text=doc)
+            doc = Chunk(text=doc)
             docs.append(doc)
         return docs
 
