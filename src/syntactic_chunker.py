@@ -1,14 +1,13 @@
-from __future__ import annotations
 import re
-import inspect
 from bisect import bisect_left
-from typing import Callable, Sequence, TYPE_CHECKING
+from typing import Callable
 from functools import cache
 from itertools import accumulate
 from contextlib import suppress
-from tqdm.auto import tqdm
 import transformers
-from intellique.chunkers.src.chunkifyr.base import Chunker, Chunk
+from chunkifyr import Chunker, Chunk
+
+# full credits goes to:https://github.com/umarbutler/semchunk/tree/main
 
 _NON_WHITESPACE_SEMANTIC_SPLITTERS = (
     '.', '?', '!', '*', # Sentence terminators.
