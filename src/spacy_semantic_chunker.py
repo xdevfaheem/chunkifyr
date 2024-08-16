@@ -2,7 +2,7 @@ import torch
 import spacy
 import numpy as np
 from sentence_transformers import SimilarityFunction
-from intellique.chunkers.src.chunkifyr.base import Chunker, Chunk
+from chunkifyr import Chunker, Chunk
 
 class SpacySemanticChunker(Chunker):
 
