@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Field
+from typing import Field
 import pymupdf
 import docx
 import requests
@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import csv
 import json
 from pydantic import BaseModel
-from intellique.utils import install_package
+from .utils import install_package
 
 class Chunk(BaseModel):
     text: str
