@@ -1,12 +1,10 @@
-import torch
-import spacy
 import numpy as np
-from sentence_transformers import SimilarityFunction
 from chunkifyr import Chunker, Chunk
+from langchain_core.embeddings import Embeddings
 
 class SpacySemanticChunker(Chunker):
 
-    def __init__(self, embedder, similarity_threshold=0.80, group_max_sentences=5):
+    def __init__(self, embedder: Embeddings, similarity_threshold=0.80, group_max_sentences=5):
         super().__init__()
 
         self.embedder = embedder
@@ -29,7 +27,7 @@ class SpacySemanticChunker(Chunker):
         if len(sentences) == 0:
             return []
         # generate embeddings and calculate cosine distances
-        embeddings = self.embedder(sentences, batch_size=8, progress_bar=True, return_type="list")
+        embeddings = self.embedder.embed_query(sentences)
         distances = self._calculate_cosine_distances(embeddings)
 
         # The first sentence is always in the first group.
