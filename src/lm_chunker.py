@@ -1,13 +1,10 @@
-from intellique.chunkers.src.chunkifyr.base import Chunker, Chunk
-from intellique.lm_engine.base import LM
-import spacy
+from chunkifyr.base import Chunker, Chunk
 import instructor
+from pydantic import BaseModel
+from openai import OpenAI as OpenAIClient
 from instructor import Mode
 from pydantic import BaseModel, Field
-from openai import OpenAI
-import os
 from typing import List
-import time
 
 class Chunk(BaseModel):
     start: int = Field(..., description="The starting artifact index of the chunk")
@@ -19,9 +16,15 @@ class TextChunks(BaseModel):
 
 class LMChunker(Chunker):
 
-    def __init__(self, lm: LM):
+    def __init__(self, model: str, openai_api: str, openai_base_url: str):
         super().__init__()
-        self.model = lm
+
+        self.model = model
+        self.client = OpenAIClient(
+            api_key=openai_api, # can be proprietary api_key/base_url or empty_string/localhost:8080 for local deployment
+            base_url=openai_base_url 
+        )
+        self.instructor_client = instructor.client.from_openai(self.client, mode=Mode.JSON_SCHEMA)
 
     def chunk(self, text):
 
@@ -33,12 +36,14 @@ class LMChunker(Chunker):
             text_with_artifacts += f"{sentence} [{i}]\n"
 
         # Determine chunk boundaries with constrained response format
-        chunks: TextChunks = self.model.chat(
+        chunks: TextChunks = self.instructor_client.chat.completions.create(
+            model=self.model,
             messages=[
                 {"role": "system", "content": "You are an AI assistant tasked with chunking a text into cohesive sections. Your goal is to create chunks that maintain topic coherence and context."},
                 {"role": "user", "content": f"Here's a text with numbered artifacts. Determine the best chunks by specifying start and end artifact numbers. Make the chunks as large as possible while maintaining coherence. Provide a thorough context for each chunk, including information from the rest of the text to ensure the chunk makes good sense. Ensure no overlap between chunks, and also not gaps. the end of one chunk should be the start of the next. Here's the text:\n\n{text_with_artifacts}"}
             ],
             response_model=TextChunks,
+            max_retries=4
         )
 
         chunks = []
