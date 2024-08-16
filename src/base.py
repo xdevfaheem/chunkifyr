@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import csv
 import json
 from pydantic import BaseModel
-from .utils import install_package
+from .util import install_package
 
 class Chunk(BaseModel):
     text: str
