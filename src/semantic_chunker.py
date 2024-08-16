@@ -1,12 +1,12 @@
 import spacy
 from intellique.chunkers.src.chunkifyr.base import Chunker, Chunk
-from intellique.embeddings.hf_transformers import HFEmbedding
+from langchain_core.embeddings import Embeddings
 from tqdm.auto import tqdm
 import numpy as np
 
 class AdjacentSentenceClustering(Chunker): # can be called as Semantic Chunker
 
-    def __init__(self, embedder: HFEmbedding):
+    def __init__(self, embedder: Embeddings):
         super.__init__()
         
         self.embedder = embedder
@@ -15,7 +15,7 @@ class AdjacentSentenceClustering(Chunker): # can be called as Semantic Chunker
     def get_embeddings(self, texts):
 
         # generate embeddings for a list of texts using a pre-trained model and handle any exceptions.
-        embeddings = self.embedder(texts, batch_size=32, progress_bar=True, return_type="list")
+        embeddings = self.embedder.embed_query(texts)
         return embeddings
 
     def _combine_sentences(self, sentences):
