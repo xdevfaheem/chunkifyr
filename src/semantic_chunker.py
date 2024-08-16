@@ -1,5 +1,4 @@
-import spacy
-from intellique.chunkers.src.chunkifyr.base import Chunker, Chunk
+from chunkifyr import Chunker, Chunk
 from langchain_core.embeddings import Embeddings
 from tqdm.auto import tqdm
 import numpy as np
