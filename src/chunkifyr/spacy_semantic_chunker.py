@@ -1,6 +1,7 @@
 import numpy as np
 from chunkifyr import Chunker, Chunk
 from langchain_core.embeddings import Embeddings
+from sentence_transformers import SimilarityFunction
 
 class SpacySemanticChunker(Chunker):
 
@@ -9,7 +10,7 @@ class SpacySemanticChunker(Chunker):
 
         self.embedder = embedder
         self.similarity_threshold = float(similarity_threshold)
-        self.similarity_fn = embedder.get_similarity
+        self.similarity_fn = SimilarityFunction.to_similarity_fn("cosine")
         self.group_max_sentences = group_max_sentences
 
     def _calculate_cosine_distances(self, embeddings):

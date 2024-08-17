@@ -1,15 +1,17 @@
 from chunkifyr import Chunker, Chunk
 from langchain_core.embeddings import Embeddings
+from sentence_transformers import SimilarityFunction
 from tqdm.auto import tqdm
 import numpy as np
 
 class AdjacentSentenceClustering(Chunker): # can be called as Semantic Chunker
 
-    def __init__(self, embedder: Embeddings):
-        super.__init__()
+    def __init__(self, embedder: Embeddings, similarity_threshold: float = 0.75):
+        super().__init__()
         
         self.embedder = embedder
-        self.similarity_fn = embedder.get_similarity
+        self.similarity_fn = SimilarityFunction.to_similarity_fn("cosine")
+        self.similarity_threshold = similarity_threshold*100
 
     def get_embeddings(self, texts):
 
@@ -56,7 +58,7 @@ class AdjacentSentenceClustering(Chunker): # can be called as Semantic Chunker
     def chunk(self, text):
 
         distances = self._pipeline(text)
-        breakpoint_percentile_threshold = 70
+        breakpoint_percentile_threshold = self.similarity_threshold
         breakpoint_distance_threshold = np.percentile(distances, breakpoint_percentile_threshold)
         indices_above_thresh = [i for i, distance in enumerate(distances) if distance > breakpoint_distance_threshold]
         chunks = []
@@ -68,7 +70,7 @@ class AdjacentSentenceClustering(Chunker): # can be called as Semantic Chunker
             if len(chunk) > 3000:
                 print("!!!")
                 sub_distances = self._pipeline(chunk)
-                sub_ts = 70
+                sub_ts = self.similarity_threshold
                 breakingpoint_ts = np.percentile(sub_distances, sub_ts)
                 ts_indices = [i for i, sub_distance in enumerate(sub_distances) if sub_distance > breakingpoint_ts]
 
