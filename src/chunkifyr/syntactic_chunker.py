@@ -9,13 +9,13 @@ from chunkifyr.base import Chunker, Chunk
 
 # full credits goes to:https://github.com/umarbutler/semchunk/tree/main
 
+"""A tuple of semantically meaningful non-whitespace splitters that may be used to chunk texts, ordered from most desirable to least desirable."""
 _NON_WHITESPACE_SEMANTIC_SPLITTERS = (
     '.', '?', '!', '*', # Sentence terminators.
     ';', ',', '(', ')', '[', ']', "“", "”", '‘', '’', "'", '"', '`', # Clause separators.
     ':', '—', '…', # Sentence interrupters.
     '/', '\\', '–', '&', '-', # Word joiners.
 )
-"""A tuple of semantically meaningful non-whitespace splitters that may be used to chunk texts, ordered from most desirable to least desirable."""
 
 _memoized_token_counters = {}
 """A map of token counters to their memoized versions."""
@@ -25,6 +25,7 @@ class SyntacticChunker(Chunker):
     def __init__(self, tokenizer_repo: str, max_token_chars=None, chunk_size = None) -> None:
         super().__init__()
         """
+        Syntactically split text using the most semantically meaningful splitter possible using hf tokenizer.
         Args:
             tokenizer_repo (str): HF tokenizer repo id of the tokenizer to be used.
             max_token_chars: Maximum token length

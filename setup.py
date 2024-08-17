@@ -9,10 +9,10 @@ with open("requirements.txt", "r") as fr:
 
 setup(
     name="chunkifyr",
-    version="0.1.1",
+    version="0.1.2",
     author="Mohammed Faheem",
     author_email="xdevfahem@gmail.com",
-    description="Your ultimate toolkit for text chunking. ",
+    description="Flexible and efficient Python library for advanced text chunking.",
     long_description=long_description,
     long_description_content_type="text/markdown", 
     url="https://github.com/xdevfaheem/chunkifyr",  

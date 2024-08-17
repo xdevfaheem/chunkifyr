@@ -3,8 +3,7 @@ import pymupdf
 import docx
 import requests
 from bs4 import BeautifulSoup
-import csv
-import json
+from typing import List, Union
 from pydantic import BaseModel, Field
 from chunkifyr.util import install_package
 
@@ -27,56 +26,73 @@ class Chunker(ABC):
             spacy.cli.download(model_name)
         self.sentencizer = spacy.load(model_name, exclude=["ner", "tagger"])
 
-    def _extract_text(self, file_path: str):
+    def _extract_text(self, file_paths: Union[List[str], str]):
+        """
+        Extract text from given file filepath
+
+        Args:
+            file_paths: single or list of path to the file .
+
+        Returns:
+            text (str): extracted text from the files
+        """
         text = ""
+        
+        file_paths = [file_paths] if type(file_paths)==str else file_paths
+        for file_path in file_paths:
+            # Handle PDF file
+            if file_path.endswith(".pdf"):
+                pdf = pymupdf.open(file_path)
+                for page in pdf:
+                    text += page.get_text()
 
-        # Handle PDF file
-        if file_path.endswith(".pdf"):
-            pdf = pymupdf.open(file_path)
-            for page in pdf:
-                text += page.get_text()
+            # Handle word file
+            elif file_path.endswith(".docx"):
+                doc = docx.Document(file_path)
+                for para in doc.paragraphs:
+                    text += para.text # + "\n"
 
-        # Handle word file
-        elif file_path.endswith(".docx"):
-            doc = docx.Document(file_path)
-            for para in doc.paragraphs:
-                text += para.text # + "\n"
+            # Handle plain text files
+            elif file_path.endswith(".txt"):
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    text += file.read()
 
-        # Handle plain text files
-        elif file_path.endswith(".txt"):
-            with open(file_path, 'r', encoding='utf-8') as file:
-                text = file.read()
-
-        # Handle CSV files
-        elif file_path.endswith(".csv"):
-            with open(file_path, 'r', encoding='utf-8') as file:
-                reader = csv.reader(file)
-                for row in reader:
-                    text += ' '.join(row) + "\n"
-
-        # Handle JSON files
-        elif file_path.endswith(".json"):
-            with open(file_path, 'r', encoding='utf-8') as file:
-                data = json.load(file)
-                text = json.dumps(data, indent=4)
-
-        # Handle webpage
-        elif file_path.startswith("http://") or file_path.startswith("https://"):
-            response = requests.get(file_path)
-            soup = BeautifulSoup(response.content, 'html.parser')
-            text = soup.get_text(separator='\n')
+            # Handle webpage
+            elif file_path.startswith("http://") or file_path.startswith("https://"):
+                response = requests.get(file_path)
+                soup = BeautifulSoup(response.content, 'html.parser')
+                text += soup.get_text(separator='\n')
 
         return text.strip()
     
     def split_sentences(self, text):
+        
         # can also use regular expressions to split the text into sentences based on punctuation followed by whitespace.
         nlp = self.sentencizer(text)
         sentences = [sent for sent in nlp.sents]
         return [s.text.strip() for s in sentences]
     
     def from_file(self, file_path):
+        """
+        Chunk the texts from single or multiple file
+
+        Args:
+            file_path: single or list of path to the file .
+
+        Returns:
+            List[Chunk]: A list of Chunk objects representing the chunks of text.
+        """
         return self.chunk(self._extract_text(file_path))
 
     @abstractmethod
-    def chunk(self, text):
+    def chunk(self, text: str):
+        """
+        Chunk the input text.
+
+        Args:
+            text (str): The input text to be chunked.
+
+        Returns:
+            List[Chunk]: A list of Chunk objects representing the chunks of text.
+        """
         raise NotImplementedError

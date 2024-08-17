@@ -19,8 +19,11 @@ class LMChunker(Chunker):
     def __init__(self, model: str, openai_client: OpenAIClient): #model: str, openai_api: str, openai_base_url: str):
         super().__init__()
         """
-        model (str): name of the OAI model, or anything if your using local OAI server (llama_cpp, llamafile, ollama)
-        openai_client (str): OpenAI class object, can be from proprietary OAI api key & base_url or OS OpenAI class created from local OAI server creds.
+        A Language Model based chunker.
+
+        Args:
+            model (str): name of the OAI model, or anything if your using local OAI server (llama_cpp, llamafile, ollama)
+            openai_client (OpenAI): OpenAI class object, can be from proprietary OAI api key & base_url or OS OpenAI class created from local OAI server creds.
         """
 
         self.model = model

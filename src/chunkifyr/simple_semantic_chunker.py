@@ -6,6 +6,13 @@ class SimpleSemanticChunker(Chunker):
 
     def __init__(self, embedder: Embeddings, similarity_threshold=0.80, group_max_sentences=5):
         super().__init__()
+        """
+        Simple semantic chunker whic groups sentence based on their similarity
+        Args:
+            embedder (Embeddings): Langchain's embedding class
+            similarity_threshold (float): similarity percentage between a sentences, a sentence would be grouped with another sentence if only their cossim score is greater than this threshold
+            group_max_sentences (int): Maximum sentences a group can have (if they are similar)
+        """
 
         self.embedder = embedder
         self.similarity_threshold = float(similarity_threshold)

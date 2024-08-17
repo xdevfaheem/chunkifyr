@@ -6,12 +6,21 @@ import numpy as np
 
 class SemanticChunker(Chunker): # can be called as Semantic Chunker
 
-    def __init__(self, embedder: Embeddings, similarity_threshold: float = 0.75):
+    def __init__(self, embedder: Embeddings, similarity_threshold: float = 0.75, max_chunk_len=2000):
         super().__init__()
+        """
+        Semantic Chunking module based on adjacent sentence clustering method
+
+        Args:
+            embedder (Embeddings): Langchain's embedding class
+            similarity_threshold (float): similarity distance between a sentence before chunking
+            max_chunk_len (int): Maximum len a chunk can have before it get solitted further.
+        """
         
         self.embedder = embedder
         self.similarity_fn = SimilarityFunction.to_similarity_fn("cosine")
         self.similarity_threshold = similarity_threshold*100
+        self.max_chunk_len = max_chunk_len
 
     def get_embeddings(self, texts):
 
@@ -66,9 +75,8 @@ class SemanticChunker(Chunker): # can be called as Semantic Chunker
         for index in tqdm(indices_above_thresh):
             chunk = ' '.join(self.sents[start_index:index+1])
 
-            # if chunk length is higher than 3k than chunk it down, chunk it don further
-            if len(chunk) > 3000:
-                print("!!!")
+            # if chunk length is higher than max chunk len than chunk it down, chunk it don further
+            if len(chunk) > self.max_chunk_len:
                 sub_distances = self._pipeline(chunk)
                 sub_ts = self.similarity_threshold
                 breakingpoint_ts = np.percentile(sub_distances, sub_ts)
