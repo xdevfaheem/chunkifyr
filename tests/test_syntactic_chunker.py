@@ -32,7 +32,7 @@ class TestSyntacticChunker(unittest.TestCase):
 
     def test_chunk_file(self):
         path = "data/test.txt"
-        result = self.chunker.from_file(path)
+        result = self.chunker.from_files(path)
         self.assertGreater(len(result), 0)
         self.assertIsInstance(result[0], Chunk)
 
