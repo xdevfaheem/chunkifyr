@@ -1,7 +1,7 @@
-from chunkifyr import Chunker, Chunk
+from chunkifyr.base import Chunker, Chunk
 from typing import List
 
-class SpacySyntacticChunker(Chunker):
+class SimpleSyntacticChunker(Chunker):
 
     def __init__(self, sep="\n\n", max_len=1_000_000, chunk_size=2000, chunk_overlap_percentage=0.050):
         super().__init__()

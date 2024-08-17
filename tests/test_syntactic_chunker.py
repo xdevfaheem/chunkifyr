@@ -1,5 +1,6 @@
 import unittest
-from chunkifyr import SyntacticChunker, Chunk
+from chunkifyr import SyntacticChunker
+from chunkifyr.base import Chunk
 
 class TestSyntacticChunker(unittest.TestCase):
 

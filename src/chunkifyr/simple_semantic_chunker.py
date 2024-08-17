@@ -1,9 +1,8 @@
-import numpy as np
-from chunkifyr import Chunker, Chunk
+from chunkifyr.base import Chunker, Chunk
 from langchain_core.embeddings import Embeddings
 from sentence_transformers import SimilarityFunction
 
-class SpacySemanticChunker(Chunker):
+class SimpleSemanticChunker(Chunker):
 
     def __init__(self, embedder: Embeddings, similarity_threshold=0.80, group_max_sentences=5):
         super().__init__()

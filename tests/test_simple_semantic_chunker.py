@@ -1,12 +1,12 @@
 import unittest
-from chunkifyr import SpacySemanticChunker, Chunk
-import numpy as np
+from chunkifyr import SimpleSemanticChunker
+from chunkifyr.base import Chunk
 from langchain_core.embeddings.fake import FakeEmbeddings
 
 class TestSpacySemanticChunker(unittest.TestCase):
 
     def setUp(self):
-        self.chunker = SpacySemanticChunker(embedder=FakeEmbeddings(size=100))
+        self.chunker = SimpleSemanticChunker(embedder=FakeEmbeddings(size=100))
 
     def test_chunking(self):
         file_path = "data/test.txt"

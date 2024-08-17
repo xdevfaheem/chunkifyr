@@ -1,10 +1,10 @@
-from chunkifyr import Chunker, Chunk
+from chunkifyr.base import Chunker, Chunk
 from langchain_core.embeddings import Embeddings
 from sentence_transformers import SimilarityFunction
 from tqdm.auto import tqdm
 import numpy as np
 
-class AdjacentSentenceClustering(Chunker): # can be called as Semantic Chunker
+class SemanticChunker(Chunker): # can be called as Semantic Chunker
 
     def __init__(self, embedder: Embeddings, similarity_threshold: float = 0.75):
         super().__init__()

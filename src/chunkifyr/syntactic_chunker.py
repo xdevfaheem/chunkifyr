@@ -5,7 +5,7 @@ from functools import cache
 from itertools import accumulate
 from contextlib import suppress
 import transformers
-from chunkifyr import Chunker, Chunk
+from chunkifyr.base import Chunker, Chunk
 
 # full credits goes to:https://github.com/umarbutler/semchunk/tree/main
 

@@ -1,10 +1,11 @@
 import unittest
-from chunkifyr import SpacySyntacticChunker, Chunk
+from chunkifyr import SimpleSyntacticChunker
+from chunkifyr.base import Chunk
 
 class TestSpacySyntacticChunker(unittest.TestCase):
 
     def setUp(self):
-        self.chunker = SpacySyntacticChunker(chunk_size=2048)
+        self.chunker = SimpleSyntacticChunker(chunk_size=2048)
 
     def test_init(self):
         self.assertEqual(self.chunker._chunk_size, 2048)

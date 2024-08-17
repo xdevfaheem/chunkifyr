@@ -1,18 +1,15 @@
-from .base import Chunk, Chunker
 from .lm_chunker import LMChunker
-from .semantic_chunker import AdjacentSentenceClustering
-from .spacy_semantic_chunker import SpacySemanticChunker
-from .spacy_syntactic_chunker import SpacySyntacticChunker
+from .semantic_chunker import SemanticChunker
+from .simple_semantic_chunker import SimpleSemanticChunker
+from .simple_syntactic_chunker import SimpleSyntacticChunker
 from .syntactic_chunker import SyntacticChunker
 
 package_version = "1.0.0"
 
 __all__ = [
-    "Chunk",
-    "Chunker",
     "LMChunker",
-    "AdjacentSentenceClustering",
-    "SpacySemanticChunker",
-    "SpacySyntacticChunker",
+    "SemanticChunker",
+    "SimpleSemanticChunker",
+    "SimpleSyntacticChunker",
     "SyntacticChunker"
 ]

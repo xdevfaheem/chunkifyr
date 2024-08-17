@@ -1,5 +1,6 @@
 import unittest
-from chunkifyr import LMChunker, Chunk
+from chunkifyr import LMChunker
+from chunkifyr.base import Chunk
 from openai import OpenAI
 
 class TestLMChunker(unittest.TestCase):

@@ -1,12 +1,12 @@
 import unittest
-from chunkifyr import AdjacentSentenceClustering, Chunk
-import numpy as np
+from chunkifyr import SemanticChunker
+from chunkifyr.base import Chunk
 from langchain_core.embeddings.fake import FakeEmbeddings
 
-class TestAdjacentSentenceClustering(unittest.TestCase):
+class TestSemanticChunker(unittest.TestCase):
 
     def setUp(self):
-        self.chunker = AdjacentSentenceClustering(embedder=FakeEmbeddings(size=100))
+        self.chunker = SemanticChunker(embedder=FakeEmbeddings(size=100))
 
     def test_chunking(self):
         file_path = "data/test.txt"
