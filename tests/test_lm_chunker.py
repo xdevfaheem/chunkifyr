@@ -1,10 +1,12 @@
 import unittest
 from chunkifyr import LMChunker, Chunk
+from openai import OpenAI
 
 class TestLMChunker(unittest.TestCase):
 
     def setUp(self):
-        self.chunker = LMChunker(model="anything", openai_api="nothing", openai_base_url="http://localhost:1234/v1") # from local openai server from llamacpp
+        client = OpenAI(api_key="empty", base_url="http://localhost:1234/v1") # from local openai server from llamacpp
+        self.chunker = LMChunker(model="anything", openai_client=client)
 
     def test_chunking(self):
         file_path = "data/test.txt"
