@@ -1,18 +1,14 @@
 # Chunkifyr 📜🔪
 
-<<<<<<< HEAD
-**Chunkifyr** is a powerful and flexible python library designed to split and chunk text into meaningful segments. Whether you're processing large documents, preparing chunks for RAG application, or simply need to manage text in manageable chunks, Chunkifyr provides a range of customizable chunking strategies.
-=======
-**Chunkifyr** is a powerful and flexible text chunking library designed to split and chunk text into meaningful segments. Whether you're processing large documents to embed, preparing chunks for RAG application, or simply need to manage text in manageable chunks, Chunkifyr provides a range of customizable chunking strategies.
->>>>>>> fb406a8 (Updated docs)
+**Chunkifyr** is a powerful and flexible python library designed to split and chunk text into meaningful segments. Whether you're processing large documents to embed, preparing chunks for RAG application, or simply need to manage text in manageable chunks, Chunkifyr provides a range of customizable chunking strategies.
 
 ## Features ✨
 
-- **Language Model Chunking**: Leverage the context understanding of languag models to chunk text based on semantic understanding.
+- **Language Model Chunking**: Utilize the context-awareness of language models to chunk text based on semantics, ensuring coherent segments that align with the text's meaning.
 - **Syntactic Chunking**: Break down text into syntactically meaningful segments, preserving grammatical structures.
-- **Semantic Chunking**: Group text into semantic segments.
+- **Semantic Chunking**: Group text into segments based on semantic meaning, providing contextually relevant chunks.
+- **Multi File Support**: Seamlessly chunk text from multiple files in different formats at once, including PDF, DOCX, TXT, and even webpages.
 - **Customizable Settings**: Easily adjust chunk sizes, overlap percentages, and more to fit your specific needs.
-- **Robust and Fast**: Efficiently handles large texts, and it's pretty smooth btw.
 
 ## Installation 🛠️
 
@@ -21,6 +17,7 @@ Install Chunkifyr via pip:
 ```bash
 pip install chunkifyr
 ```
+```Note: Python 3.8+ is required.```
 
 ## Usage 🚀
 
@@ -48,8 +45,8 @@ This example demonstrates how to use the LMChunker with an OpenAI client to brea
 - **LMChunker:** Utilizes pre-trained language models for contextual chunking.
 - **SimpleSemanticChunker:** Groups similar splits together for basic semantic chunking.
 - **SimpleSyntacticChunker:** Simple syntactic chunking with desired chunk size, overlap and seperator. (very similar to langchain character splitter)
-- **SemanticChunker**: Groups text semantically using the Adjacent Sentence Clustering process with a configurable similarity threshold.
-- **SyntacticChunker:** Split the text into meaningful chunks based on syntactic structures using hf_tokenizer.
+- **SemanticChunker**: Groups text semantically using the Adjacent Sentence Clustering method with a configurable similarity threshold.
+- **SyntacticChunker:** Split text into meaningful segment based on syntactic structures using hf_tokenizer
 More soon... (Regex based, etc)
 
 ## Contributing 🤝

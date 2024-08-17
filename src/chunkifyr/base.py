@@ -66,13 +66,13 @@ class Chunker(ABC):
         return text.strip()
     
     def split_sentences(self, text):
-        
+
         # can also use regular expressions to split the text into sentences based on punctuation followed by whitespace.
         nlp = self.sentencizer(text)
         sentences = [sent for sent in nlp.sents]
         return [s.text.strip() for s in sentences]
     
-    def from_file(self, file_path):
+    def from_files(self, file_path):
         """
         Chunk the texts from single or multiple file
 
