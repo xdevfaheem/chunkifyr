@@ -1,6 +1,6 @@
 # Chunkifyr 📜🔪
 
-**Chunkifyr** is a powerful and flexible text chunking library designed to split and chunk text into meaningful segments. Whether you're processing large documents, preparing data for NLP tasks, or simply need to manage text in manageable chunks, Chunkifyr provides a range of customizable chunking strategies.
+**Chunkifyr** is a powerful and flexible python library designed to split and chunk text into meaningful segments. Whether you're processing large documents, preparing chunks for RAG application, or simply need to manage text in manageable chunks, Chunkifyr provides a range of customizable chunking strategies.
 
 ## Features ✨
 
