@@ -16,15 +16,15 @@ class TextChunks(BaseModel):
 
 class LMChunker(Chunker):
 
-    def __init__(self, model: str, openai_api: str, openai_base_url: str):
+    def __init__(self, model: str, openai_client: OpenAIClient): #model: str, openai_api: str, openai_base_url: str):
         super().__init__()
+        """
+        model (str): name of the OAI model, or anything if your using local OAI server (llama_cpp, llamafile, ollama)
+        openai_client (str): OpenAI class object, can be from proprietary OAI api key & base_url or OS OpenAI class created from local OAI server creds.
+        """
 
         self.model = model
-        self.client = OpenAIClient(
-            api_key=openai_api, # can be proprietary api_key/base_url or empty_string/localhost:8080 for local deployment
-            base_url=openai_base_url 
-        )
-        self.instructor_client = instructor.client.from_openai(self.client, mode=Mode.JSON_SCHEMA)
+        self.instructor_client = instructor.client.from_openai(openai_client, mode=Mode.JSON_SCHEMA)
 
     def chunk(self, text):
 

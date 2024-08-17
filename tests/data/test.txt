@@ -1,0 +1,19 @@
+In intelligence and artificial intelligence, an intelligent agent (IA) is an agent acting in an intelligent manner.
+It perceives its environment, takes actions autonomously in order to achieve goals, and may improve its performance with learning or acquiring knowledge.
+An intelligent agent may be simple or complex: A thermostat or other control system is considered an example of an intelligent agent, as is a human being, as is any system that meets the definition, such as a firm, a state, or a biome.[1]
+
+Leading AI textbooks define "artificial intelligence" as the "study and design of intelligent agents", a definition that considers goal-directed behavior to be the essence of intelligence.
+Goal-directed agents are also described using a term borrowed from economics, "rational agent".[1]
+
+An agent has an "objective function" that encapsulates all the IA's goals.
+Such an agent is designed to create and execute whatever plan will, upon completion, maximize the expected value of the objective function.
+For example, a reinforcement learning agent has a "reward function" that allows the programmers to shape the IA's desired behavior,[3] and an evolutionary algorithm's behavior is shaped by a "fitness function".
+
+Intelligent agents in artificial intelligence are closely related to agents in economics,
+and versions of the intelligent agent paradigm are studied in cognitive science, ethics, and the philosophy of practical reason,
+as well as in many interdisciplinary socio-cognitive modeling and computer social simulations.
+
+Intelligent agents are often described schematically as an abstract functional system similar to a computer program.
+Abstract descriptions of intelligent agents are called abstract intelligent agents (AIA) to distinguish them from their real-world implementations.
+An autonomous intelligent agent is designed to function in the absence of human intervention.
+Intelligent agents are also closely related to software agents (an autonomous computer program that carries out tasks on behalf of users). 
