@@ -17,7 +17,7 @@ Install Chunkifyr via pip:
 ```bash
 pip install chunkifyr
 ```
-```Note: Python 3.7+ is required.```
+```Note: Python 3.8+ is required.```
 
 ## Usage 🚀
 
@@ -42,12 +42,12 @@ This example demonstrates how to use the LMChunker with an OpenAI client to brea
 
 ## Available Chunkers
 
-    **LMChunker:** Utilizes pre-trained language models for contextual chunking.
-    **SimpleSemanticChunker:** Groups similar splits together for basic semantic chunking.
-    **SimpleSyntacticChunker:** Simple syntactic chunking with desired chunk size, overlap and seperator. (very similar to langchain character splitter)
-    **SemanticChunker**: Groups text semantically using the Adjacent Sentence Clustering process with a configurable similarity threshold.
-    **SyntacticChunker:** Chunks text based on syntactic structures using customizable tokenization (supports hf_tokenizer, tiktoken).
-    More soon... (Regex based, etc)
+- **LMChunker:** Utilizes pre-trained language models for contextual chunking.
+- **SimpleSemanticChunker:** Groups similar splits together for basic semantic chunking.
+- **SimpleSyntacticChunker:** Simple syntactic chunking with desired chunk size, overlap and seperator. (very similar to langchain character splitter)
+- **SemanticChunker**: Groups text semantically using the Adjacent Sentence Clustering process with a configurable similarity threshold.
+- **SyntacticChunker:** Chunks text based on syntactic structures using customizable tokenization (supports hf_tokenizer, tiktoken).
+More soon... (Regex based, etc)
 
 ## Contributing 🤝
 
