@@ -1,13 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import Field
 import pymupdf
 import docx
 import requests
 from bs4 import BeautifulSoup
 import csv
 import json
-from pydantic import BaseModel
-from .util import install_package
+from pydantic import BaseModel, Field
+from chunkifyr.util import install_package
 
 class Chunk(BaseModel):
     text: str
@@ -75,7 +74,6 @@ class Chunker(ABC):
         sentences = [sent for sent in nlp.sents]
         return [s.text.strip() for s in sentences]
     
-    @classmethod
     def from_file(self, file_path):
         return self.chunk(self._extract_text(file_path))
 
