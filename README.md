@@ -51,7 +51,11 @@ More soon... (Regex based, etc)
 
 ## Contributing 🤝
 
-Contributions are welcome! If you have ideas for improving Chunkifyr or encounter any issues, feel free to submit a pull request or open an issue.
+Contributions are welcome! If you have ideas for improving Chunkifyr or encounter any issues, feel free to submit a pull request or open an issue. There are lot more chunker that can be added, for example,
+- CSVChunker
+- MarkdownChunker
+- ...
+Develop a chunker as you wish, create a PR :)
 
 ## License 📄
 
