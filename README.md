@@ -31,7 +31,7 @@ from openai import OpenAI
 client = OpenAI(api_key="YOUR_API_KEY", base_url="DEPLOYMENT_URL") 
 
 chunker = LMChunker(model="gpt-3.5-turbo-0125", client=client)
-chunks = chunker.from_file('path_to_your_text_file.txt')
+chunks = chunker.from_files('path_to_your_text_file.txt')
 
 for i, chunk in enumerate(chunks, 1):
     print(f"Chunk {i}: {chunk.text}")
