@@ -85,7 +85,7 @@ class Chunker(ABC):
         return self.chunk(self._extract_text(file_path))
 
     @abstractmethod
-    def chunk(self, text: str):
+    def chunk(self, text: str) -> List[Chunk]:
         """
         Chunk the input text.
 
