@@ -3,7 +3,7 @@ from .semantic_chunker import SemanticChunker
 from .simple_semantic_chunker import SimpleSemanticChunker
 from .simple_syntactic_chunker import SimpleSyntacticChunker
 from .syntactic_chunker import SyntacticChunker
-
+from .cluster_semantic_chunker import ClusterSemanticChunker
 package_version = "1.0.0"
 
 __all__ = [
