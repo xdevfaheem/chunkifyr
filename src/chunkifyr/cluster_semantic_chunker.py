@@ -10,11 +10,10 @@ from sentence_transformers import SimilarityFunction
 
 
 class ClusterSemanticChunker(Chunker):
-    def __init__(self, embedder: Embeddings, max_chunk_size=400, min_chunk_size=50):
+    def __init__(self, embedder: Embeddings, max_cluster=8):
         super().__init__()
         
-        self._chunk_size = max_chunk_size
-        self.max_cluster = max_chunk_size // min_chunk_size
+        self.max_cluster = max_cluster
         self.embedder = embedder
 
         # cosine similarity function to be used to genearete similiarity matrix that captures the semantic similarity between all pairs of sentences in the text.

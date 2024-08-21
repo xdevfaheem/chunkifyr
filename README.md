@@ -43,6 +43,7 @@ This example demonstrates how to use the LMChunker with an OpenAI client to brea
 ## Available Chunkers
 
 - **LMChunker:** Utilizes pre-trained language models for contextual chunking.
+- **ClusterSemanticChunker:** Generates globally optimal chunks, ensuring that each chunk contains semantically cohesive texts.
 - **SimpleSemanticChunker:** Groups similar splits together for basic semantic chunking.
 - **SimpleSyntacticChunker:** Simple syntactic chunking with desired chunk size, overlap and seperator. (very similar to langchain character splitter)
 - **SemanticChunker**: Groups text semantically using the Adjacent Sentence Clustering method with a configurable similarity threshold.
